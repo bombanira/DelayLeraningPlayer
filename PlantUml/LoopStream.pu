@@ -1,0 +1,11 @@
+@startuml
+class LoopStream
+{
+    -sourceStream : WaveStream
+    << property >>
+    +EnableLooping : bool
+    +Length : {get;} long 
+    +Position : long 
+    +Read(byte[] buffer, int offset, int count)
+}
+@enduml

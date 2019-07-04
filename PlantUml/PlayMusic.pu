@@ -1,0 +1,102 @@
+@startuml
+' option + D => show right screen
+
+' command + shift + p => open command parret
+' then, ファイル内のダイアグラムをエクスポート save and output (png)
+' ' == comment out /' multi comment out '/
+/'
+class MusicClass
+{
+    Volume : float
+    isMute : bool
+    canMute : bool
+    IsLoop : bool
+    +MusicPlay()
+    +MusicStop()
+    +Init()
+}
+
+class WaveOut
+{
+    DeviceNumber : int
+    Volume : float
+    +Play()
+    +Pause()
+    +GetPosition()
+    +Dispose()
+    +DesiredLatency()
+}
+
+class LoopStream {
+    +EnableLooping()
+    +Length()
+    +Position() 
+    +Read()
+}
+
+class AudioFileReader
+{
+    FileName : string
+    Position : long
+    Length : long
+    Volume : float
+    +Read()
+    +Dispose()
+}
+
+MusicClass *-- WaveOut
+MusicClass *-- LoopStream
+MusicClass *-- AudioFileReader
+'/
+class MusicClass
+{
+    Volume : float
+    isMute : bool
+    canUse : bool
+    IsLoop : bool
+    HaveMusic : bool
+    defaultLoop : bool
+    +MusicPlay()
+    +MusicStop()
+    +Init()
+    +SetIsLoop()
+    +GetIsLoop()
+
+}
+
+class MusicWaveOut
+{
+    ImageName : enum
+    +GetImage()
+}
+
+class AudioFileReader
+{
+    FileName : string
+    Position : long
+    Length : long
+    Volume : float
+    +Read()
+    +Dispose()
+}
+
+class LoopClass
+{
+    loopStream : LoopStream
+    ImageName : enum
+    EnableLooping : bool 
+    +Init()
+    +GetImage()
+}
+
+class MusicMute
+{
+    ImageName : enum
+    +GetImage()
+}
+
+MusicClass *-- MusicWaveOut
+MusicClass *-- LoopClass
+MusicClass *-- AudioFileReader
+MusicClass *-- MusicMute
+@enduml

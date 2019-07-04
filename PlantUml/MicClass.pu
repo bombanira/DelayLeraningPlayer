@@ -1,0 +1,82 @@
+@startuml
+
+class WaveInEvent {
+    ' buffers
+    +DeviceNumber()
+    +StartRecording()
+    +StopRecording()
+    +GetPosition()
+    ' return Position in byte
+    +Dispose()
+}
+
+class BufferedWaveProvider 
+{
+    ' Will always return count bytes, since we will 
+    ' zero-fill the buffer if not enough available
+    +Read()
+    +BufferLength()
+    +ClearBuffer()
+}
+
+class SavingWaveProvider
+{
+    Volume : float
+    +Read()
+    +Dispose()
+}
+
+class WaveOut
+{
+    DeviceNumber : int
+    Volume : float
+    +Play()
+    +Pause()
+    +GetPosition()
+    +Dispose()
+    +DesiredLatency()
+}
+
+class MicClass
+{
+    isMute : bool
+    Volume : float
+    +MicStart()
+    +MicStop()
+    +SetDelayMS(int DelayMSecond)
+}
+
+MicClass *-- WaveInEvent
+MicClass *-- BufferedWaveProvider
+MicClass *-- SavingWaveProvider
+MicClass *-- WaveOut
+
+/'
+interface IWaveProvider
+{
+    {abstract} WaveFormat : WaveFormat 
+    {abstract} int Read(byte[] buffer, int offset, int count)
+}
+
+interface IWaveIn
+{
+    {abstract} WaveFormat : WaveFormat
+    {abstract} void StartRecording()
+    {abstract} void StopRecording()
+}
+
+interface IDisposable
+{
+    {abstract} void Dispose()
+}
+
+IDisposable <|.. IWaveIn
+IWaveIn <|.. WaveInEvent
+IDisposable <|.. WaveInEvent
+IWaveProvider <|.. BufferedWaveProvider  
+'/
+
+'BufferedWaveProvider-LoopStream :asd
+'BufferedWaveProvider "3" - "4" WaveInEvent : kannrenndo
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+class WaveInEvent
+{
+    << property >> 
+    +DeviceNumber : int
+    +DataAvailable : event
+    +WaveInEvent()
+    +StartRecording(): void
+    +StopRecorging(): void
+    +Dispose() : void 
+}
+@enduml

@@ -1,0 +1,43 @@
+@startuml
+
+class MusicMute
+{
+    +ImageName : enum
+    +GetImage()
+}
+
+class MusicWaveOut
+{
+    +ImageName : enum
+    +GetImage()
+}
+
+class LoopClass
+{
+    +ImageName : enum
+    +EnableLooping : bool
+    +GetImage()
+}
+
+class BoolImage
+{
+    -Images : List<Image>
+    +Status : bool
+    +GetImage()
+    +SetImage()
+    +SetImages()
+}
+
+class LoopStream {
+    +EnableLooping()
+    +Length()
+    +Position() 
+    +Read()
+}
+
+BoolImage -- MusicMute
+BoolImage -- MusicWaveOut
+BoolImage -- LoopClass
+LoopStream <|-- LoopClass
+
+@enduml

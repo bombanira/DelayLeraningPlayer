@@ -1,0 +1,24 @@
+@startuml
+class WaveOut
+{
+    ' -hWaveOut : IntPrt
+    ' -buffers : WaveOutBuffer[]
+    ' -waveStream : IWaveProvider
+    ' 
+    ' -playBackState : readonly PlayBackState
+    ' -callback : WaveInterop.WaveCallback
+    ' -callbackInfo : WaveCallbackInfo 
+
+    << property >>
+    +DesiredLatency : int
+    +DeviceNumber : {get;} int
+    +PlaybackState : {get;} PlaybackState
+    +Volume : float
+    +WaveOut() 
+    +Init(IWaveProvider) : void
+    +GetPosition() : long
+    +Play() : void
+    +Stop() : void
+    +Dispose() : void 
+}
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+class AudioFileReader
+{
+    -readerStream : WaveStream
+    << property >>
+    +FileName : {get;} string
+    +Position : long
+    +Length : {get;} long
+    +Volume : float
+    +AudioFileReader(string fileName)
+    +Read(float[] buffer, int offset, int count) : int 
+    +Dispose() : void 
+}
+@enduml

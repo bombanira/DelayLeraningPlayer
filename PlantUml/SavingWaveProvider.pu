@@ -1,0 +1,10 @@
+@startuml
+class SavingWaveProvider
+{
+    -sourceWaveProvider : IWaveProvider
+    << property >>
+    +Volume : float
+    +Read(byte[] buffer, int offset, int count) : int
+    +Dispose() : void
+}
+@enduml

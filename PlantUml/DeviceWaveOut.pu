@@ -1,0 +1,20 @@
+@startuml
+
+class DeviceWaveOut
+{
+    ' private WaveOut
+    ' public BoolImageStatus
+    + isMute : bool
+    + ImageName : enum
+    << property >> 
+    + Volume { set; }
+
+    +GetImage(ImageName) : Image
+}
+
+enum ImageName
+{
+    DeviceVolumeOnImage
+    DeviceVolumeOffImage
+}
+@enduml
